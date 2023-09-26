@@ -2,19 +2,21 @@ import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Set
 
 // Remember to rename these classes and interfaces!
 
-interface MyPluginSettings {
+interface DaisyChainSettings {
 	mySetting: string;
 }
 
-const DEFAULT_SETTINGS: MyPluginSettings = {
+const DEFAULT_SETTINGS: DaisyChainSettings = {
 	mySetting: 'default'
 }
 
-export default class MyPlugin extends Plugin {
-	settings: MyPluginSettings;
+export default class DaisyChain extends Plugin {
+	settings: DaisyChainSettings;
 
 	async onload() {
-		await this.loadSettings();
+		this.addRibbonIcon('dice', 'Greet', () => {
+			new Notice('Hello, world!');
+		  });
 
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon('dice', 'Sample Plugin', (evt: MouseEvent) => {
